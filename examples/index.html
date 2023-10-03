@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="../dist/weed-client-sdk.min.js"></script>
+
+		<style>
+			html {
+				height: 100%;
+			}
+
+			body {
+				margin: 0px;
+				background: #ffffff;
+				height: 100%;
+			}
+
+			#app {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.cxtmenu-item {
+				font-size: 10px;
+			}
+		</style>
+    <script>
+		const client = WeedClientSDK.createClient('ws://0.0.0.0:8080/example');
+
+		client.connect().then(async () => {
+
+			try {
+				let res = await client.System.ping();
+				console.log(res);
+			} catch(e) {
+				console.log(e);
+			}
+		});
+    </script>
+	</head>
+	<body>
+		<div id="app"></div>
+	</body>
+</html>

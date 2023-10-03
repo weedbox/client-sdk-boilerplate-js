@@ -1,0 +1,40 @@
+{
+  "name": "client-sdk-boilerplate-js",
+  "version": "1.0.0",
+  "description": "Boilerplate for JavaScript client SDK",
+  "main": "./dist/index.js",
+  "scripts": {
+    "clean": "rm -fr ./lib",
+    "build": "npm run clean && webpack",
+    "doc:gen": "typedoc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:weedbox/client-sdk-boilerplate-js.git"
+  },
+  "keywords": [
+    "client",
+    "sdk"
+  ],
+  "author": "Fred Chien <cfsghost@gmail.com>",
+  "license": "APL",
+  "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "babel-loader": "^8.0.6",
+    "terser-webpack-plugin": "^2.1.2",
+    "ts-loader": "^6.0.4",
+    "typedoc": "^0.16.11",
+    "typescript": "^3.5.3",
+    "uuid": "^3.3.3",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.3",
+    "@types/event-emitter": "^0.3.3"
+  }
+}
