@@ -30,7 +30,9 @@
 		client.connect().then(async () => {
 
 			try {
-				let res = await client.System.ping();
+				let token = 'xxx';
+				let res = await client.Auth.authenticate(token);
+
 				console.log(res);
 			} catch(e) {
 				console.log(e);

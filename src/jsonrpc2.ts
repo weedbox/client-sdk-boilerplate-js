@@ -102,7 +102,7 @@ class JSONRPC extends EventEmitter {
 				clearTimeout(timer);
 
 				if (err)
-					return reject(data.err);
+					return reject(err);
 
 				resolve(data.result);
 			});

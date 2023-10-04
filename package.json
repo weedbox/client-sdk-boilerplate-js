@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rm -fr ./lib",
     "build": "npm run clean && webpack",
+    "watch": "npm run clean && webpack -w",
     "doc:gen": "typedoc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
