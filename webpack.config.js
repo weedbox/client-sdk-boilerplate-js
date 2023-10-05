@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -56,16 +55,6 @@ module.exports = {
 	],
 	devtool: false,
 	optimization: {
-		/*
-	minimizer: [
-	  new TerserPlugin({
-		include: /\.min\.js$/,
-		parallel: true,
-		sourceMap: true,
-		cache: true,
-	  })
-	],
-	*/
 		splitChunks: {
 			cacheGroups: {
 				commons: {

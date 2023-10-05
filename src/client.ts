@@ -9,16 +9,16 @@ class Client extends EventEmitter {
 	ws: any;
 	finished: boolean;
 	jsonrpc: JSONRPC;
-	reconnectTimer: number;
-	healthcheckTimer: number;
+	reconnectTimer: ReturnType<typeof setTimeout>;
+	healthcheckTimer: ReturnType<typeof setTimeout>;
 
 	constructor(url: string) {
 		super();
 		this.finished = false;
 		this.serverUrl = url;
 		this.jsonrpc = new JSONRPC();
-		this.reconnectTimer = -1;
-		this.healthcheckTimer = -1;
+		this.reconnectTimer = setTimeout(() => '', 0);
+		this.healthcheckTimer = setTimeout(() => '', 0);
 
 		// Loading packages
 		for (let name in Packages) {
@@ -119,7 +119,7 @@ class Client extends EventEmitter {
 
 				// try to reconnect after 3 seconds
 				if (!this.finished) {
-					this.timeout = setTimeout(() => {
+					this.reconnectTimer = setTimeout(() => {
 						this.connect();
 					}, 3000);
 				}
