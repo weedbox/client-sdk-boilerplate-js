@@ -2,6 +2,14 @@
 
 Boilerplate for JavaScript client SDK to communicate with websocket server. You can implement own methods based on this project.
 
+## Build
+
+Build `dist/weed-client-sdk.min.js` with command in the following:
+
+```shell
+npm run build
+```
+
 ## Usage
 
 Get sdk doc run `npm run doc:gen`, and open `docs/index.html`
