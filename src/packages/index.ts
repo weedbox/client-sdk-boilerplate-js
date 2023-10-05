@@ -1,5 +1,5 @@
-import { System } from './packages/system';
-import { Auth } from './packages/auth';
+import { System } from './system';
+import { Auth } from './auth';
 
 interface PackageList {
 	[key: string]: any;
