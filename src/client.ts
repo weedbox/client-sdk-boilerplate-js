@@ -36,8 +36,6 @@ class Client extends EventEmitter {
 
 		this.healthcheckTimer = setTimeout(async () => {
 
-			console.log('ping');
-
 			try {
 				await this.System.ping();
 			} catch(e) {
