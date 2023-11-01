@@ -7,12 +7,20 @@ interface AuthenticateResponse {
 
 class Auth {
 	client: Client;
+	authdata: any;
 	constructor(client: Client) {
 		this.client = client;
+		this.authdata = {};
 	}
 
-	authenticate(token: string): Promise<AuthenticateResponse> {
-		return this.client.invokeMethod('Auth.Authenticate', [ token ]);
+	async authenticate(token: string): Promise<AuthenticateResponse> {
+		let res = await this.client.invokeMethod('Auth.Authenticate', [ token ]);
+
+		if (res.success) {
+			this.authdata = res.data;
+		}
+
+		return res;
 	}
 }
 

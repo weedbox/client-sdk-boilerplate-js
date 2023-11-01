@@ -25,18 +25,47 @@
 			}
 		</style>
     <script>
-		const client = WeedClientSDK.createClient('ws://0.0.0.0:8080/example');
+		//const client = WeedClientSDK.createClient('ws://0.0.0.0:8080/example');
+		const client = WeedClientSDK.createClient('ws://0.0.0.0:8000');
 
 		client.connect().then(async () => {
 
 			try {
-				let token = 'xxx';
+				let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI5MzQ3NWUzLTJjMzctNDRjMS05YWZiLWY1YTA3NWY5NDMyOSIsInVpZCI6IkpQNjlLRSIsIm5hbWUiOiJsZW9ubGluIiwiYXZhdGFyX3VybCI6Imh0dHBzOi8vc3RvcmFnZS5vbmdsYWkub25saW5lL2F2YXRhci9hZGY4YTIwOC01OWMzLTQ5ZTItYTAzNC00YWZmYTNlNzkwY2YiLCJyb2xlX2lkIjoiIiwicm9sZV9hbGlhcyI6IiIsImxhbmd1YWdlIjoiemgtVFciLCJleHAiOjE3MTQxOTc2Njh9.Go8cZe2QRBM74fG5pehm1FX60OGVNOEn4OwqGO771iY';
 				let res = await client.Auth.authenticate(token);
 
 				console.log(res);
 			} catch(e) {
 				console.log(e);
 			}
+
+			client.on('message', (msg) => {
+				console.log('xx', msg);
+			})
+
+			try {
+				await client.Messaging.ready();
+			} catch(e) {
+				console.log(e);
+			}
+
+			try {
+				let group = await client.Group.getPublicGroupInfo();
+				console.log(group);
+
+				await client.Messaging.send({
+					type: 'normal',
+					meta: {
+						group: group.id,
+						content_type: 'plain'
+					},
+					payload: 'hello'
+				});
+
+			} catch(e) {
+				console.log(e);
+			}
+
 		});
     </script>
 	</head>

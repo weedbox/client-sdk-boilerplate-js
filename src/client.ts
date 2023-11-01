@@ -11,6 +11,7 @@ class Client extends EventEmitter {
 	jsonrpc: JSONRPC;
 	reconnectTimer: ReturnType<typeof setTimeout>;
 	healthcheckTimer: ReturnType<typeof setTimeout>;
+	meta: object;
 
 	constructor(url: string) {
 		super();
@@ -19,6 +20,7 @@ class Client extends EventEmitter {
 		this.jsonrpc = new JSONRPC();
 		this.reconnectTimer = setTimeout(() => '', 0);
 		this.healthcheckTimer = setTimeout(() => '', 0);
+		this.meta = {};
 
 		// Loading packages
 		for (let name in Packages) {
@@ -55,7 +57,7 @@ class Client extends EventEmitter {
 	initRPC() {
 
 		this.jsonrpc.on('notification', (msg: Notification) => {
-			let args: [string, ...any[]] = [ 'event', msg ];
+			let args: [string, ...any[]] = [ msg.eventName, ...msg.params ];
 			this.emit.apply(this, args);
 		});
 
