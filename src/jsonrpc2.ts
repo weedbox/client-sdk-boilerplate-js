@@ -7,7 +7,7 @@ interface Job {
 	params: any;
 }
 
-interface Notification {
+interface NotificationMessage {
 	eventName: string;
 	params: any[];
 }
@@ -37,7 +37,7 @@ class JSONRPC extends EventEmitter {
 			let notification = {
 				eventName: data.method,
 				params: data.params,
-			} as Notification;
+			} as NotificationMessage;
 
 			if (data.params instanceof Array) {
 				notification.params = data.params;
@@ -114,5 +114,5 @@ class JSONRPC extends EventEmitter {
 
 export {
 	JSONRPC,
-	Notification
+	NotificationMessage
 }

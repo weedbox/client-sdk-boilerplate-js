@@ -1,5 +1,5 @@
 import EventEmitter from './eventemitter';
-import { JSONRPC, Notification } from './jsonrpc2';
+import { JSONRPC, NotificationMessage } from './jsonrpc2';
 import Packages from './packages';
 
 class Client extends EventEmitter {
@@ -56,7 +56,7 @@ class Client extends EventEmitter {
 
 	initRPC() {
 
-		this.jsonrpc.on('notification', (msg: Notification) => {
+		this.jsonrpc.on('notification', (msg: NotificationMessage) => {
 			let args: [string, ...any[]] = [ msg.eventName, ...msg.params ];
 			this.emit.apply(this, args);
 		});
