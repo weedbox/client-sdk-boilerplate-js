@@ -142,9 +142,6 @@ class Client extends EventEmitter {
 	}
 }
 
-const Event = Notification;
-
 export {
 	Client,
-	Event,
 }
