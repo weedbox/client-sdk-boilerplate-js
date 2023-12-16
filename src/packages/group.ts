@@ -1,4 +1,5 @@
 import { Client } from '../client';
+import { Message } from './messaging';
 
 interface GetGroupsResponse {
 	groups: GroupInfo[];
@@ -14,6 +15,15 @@ interface GroupInfo {
 interface GroupMeta {
 	desc: string,
 	labels: string[];
+}
+
+interface History {
+	seq: number;
+	message: Message;
+}
+
+interface GroupHistory {
+	histories: History[];
 }
 
 class Group {
@@ -43,6 +53,10 @@ class Group {
 
 	enter(groupID: string): Promise<void> {
 		return this.client.invokeMethod('Group.Enter', [ groupID ]);
+	}
+
+	getHistories(groupID: string): Promise<GroupHistory> {
+		return this.client.invokeMethod('Group.GetHistories', [ groupID ]);
 	}
 }
 
