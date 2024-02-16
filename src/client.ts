@@ -51,7 +51,7 @@ class Client extends EventEmitter {
 
 			this.healthcheck();
 
-		}, 1000);
+		}, 10000);
 	}
 
 	initRPC() {
@@ -83,7 +83,7 @@ class Client extends EventEmitter {
 
 	disconnect() {
 		clearTimeout(this.reconnectTimer);
-		this.finished = false;
+		this.finished = true;
 		this.ws.close();
 	}
 
